@@ -1,3 +1,42 @@
 Tool for converting a finite state machine in XML (more specifically, a modified
 form of SCXML) into both a java abstract base class, and a dot graph description
 file suitable for generating an image of the state machine.
+
+  Below is an example of an state machine used to enter a PIN code:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml"
+        name="com.google.common.labs.fsm.CodeEntry" initial="Ready"
+        base="BaseState">
+    <state id="BaseState">
+      <transition event="ResetPressed" action="ClearCodeEntryBuffer"
+          target="Ready" />
+      </state>
+    <state id="Ready">
+      <transition event="DigitPressed" action="Beep" target="Ready" />
+      <transition event="EnterPressed" target="ValidatingEntry" >
+        <action id="DoubleBeep" />
+        <action id="PerformValidation" />
+      </transition>
+    </state>
+    <state id="ValidatingEntry">
+      <transition event="EntryValid" target="Ready">
+        <action id="TripleBeep" />
+        <action id="Unlock" />
+      </transition>
+      <transition event="EntryInvalid" target="Ready">
+        <action id="ClearCodeEntryBuffer" />
+        <action id="ErrorBeep" />
+      </transition>
+    </state>
+</scxml>
+
+  scxml2java translates this to a class named CodeEntry by scxml2java, intended
+to be subclassed to handle the transition actions, and includes a debugging
+mechanism.  scxml2dot translates the xml into a .dot graph description file for
+rendering as an image (see attached code_entry.png)
+
+  The motivation for designing the state machine in XML is for ease of
+collaboration among various groups. Abstracting the basic elements of the state
+machine masks the implementation details from design participants.
+
