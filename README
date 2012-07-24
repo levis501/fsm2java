@@ -1,0 +1,3 @@
+Tool for converting a finite state machine in XML (more specifically, a modified
+form of SCXML) into both a java abstract base class, and a dot graph description
+file suitable for generating an image of the state machine.
