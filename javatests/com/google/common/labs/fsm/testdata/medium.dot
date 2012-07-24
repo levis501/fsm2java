@@ -1,0 +1,10 @@
+digraph medium {
+    Sleeping [shape=ellipse]
+    Sleeping -> AnnoyedState [fontsize=10, label="AlarmRings\n(Wake)"];
+    Sleeping -> Sleeping [fontsize=10, label="Dog\n(Grunt,\nKick)"];
+    Sleeping -> AnnoyedState [fontsize=10, label="Nightmare\n(Scream)"];
+    AnnoyedState [shape=circle]
+    AnnoyedState -> Sleeping [fontsize=10, label="HitSnooze"];
+    AnnoyedState -> EndState [fontsize=10, label="GetUp"];
+    EndState [shape=ellipse]
+}

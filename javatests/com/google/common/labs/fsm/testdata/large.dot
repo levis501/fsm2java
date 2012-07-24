@@ -1,0 +1,11 @@
+digraph large {
+    Sleeping [shape=ellipse]
+    Sleeping -> AnnoyedState [fontsize=10, label="AlarmRings"];
+    Sleeping -> Sleeping [fontsize=10, label="Dog\n(Grunt,\nKick)"];
+    Sleeping -> AnnoyedState [fontsize=10, label="Nightmare\n(Scream)"];
+    AnnoyedState [shape=circle]
+    AnnoyedState -> Sleeping [fontsize=10, label="HitSnooze"];
+    EndState [shape=ellipse]
+    BaseState -> EndState [fontsize=10, label="RuntimeFailure\n(WakeUp)"];
+    BaseState[shape=doublecircle, color=blue]
+}

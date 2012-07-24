@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" name="com.google.common.labs.fsm.CodeEntry" initial="Ready" base="BaseState">
+    <state id="BaseState">
+      <transition event="ResetPressed" action="ClearCodeEntryBuffer" target="Ready" />
+      </state>
+    <state id="Ready">
+      <transition event="DigitPressed" action="Beep" target="Ready" />
+      <transition event="EnterPressed" target="ValidatingEntry" >
+        <action id="DoubleBeep" />
+        <action id="PerformValidation" />
+      </transition>
+    </state>
+    <state id="ValidatingEntry">
+      <transition event="EntryValid" target="Ready">
+        <action id="TripleBeep" />
+        <action id="Unlock" />
+      </transition>
+      <transition event="EntryInvalid" target="Ready">
+        <action id="ClearCodeEntryBuffer" />
+        <action id="ErrorBeep" />
+      </transition>
+    </state>
+</scxml>

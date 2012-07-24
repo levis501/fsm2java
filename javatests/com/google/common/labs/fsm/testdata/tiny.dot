@@ -1,0 +1,5 @@
+digraph tiny {
+    StateOne [shape=ellipse]
+    StateOne -> StateTwo [fontsize=10, label="EventA"];
+    StateTwo [shape=ellipse]
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" name="com.google.common.labs.fsm.medium" initial="Sleeping">
+    <state id="Sleeping">
+      <transition event="AlarmRings" action="Wake" target="AnnoyedState" />
+      <transition event="Dog" target="Sleeping" >
+        <action id="Grunt" />
+        <action id="Kick" />
+      </transition>
+      <transition event="Nightmare" action="Scream" target="AnnoyedState" />
+    </state>
+    <state id="AnnoyedState">
+      <transition event="HitSnooze" target="Sleeping" />
+      <transition event="GetUp" target="EndState" />
+    </state>
+    <state id="EndState">
+    </state>
+</scxml>

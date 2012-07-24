@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" name="tiny">
+    <state id="StateOne">
+      <transition evnet="EventA" target="StateTwo" />
+    </state>
+    <state id="StateTwo">
+      <transition event="EventB" target="StateOne" />
+    </state>
+</scxml>
